@@ -1,0 +1,95 @@
+spring.profiles.active: development
+---
+server:
+  port: 9091
+spring:
+  profiles: development
+  application:
+    name: ex-order
+  resources:
+    chain:
+      enabled: true
+  cloud.:
+    stream:
+      bindings:
+        productEventsSubscriberChannel:
+          binder: rabbit
+          destination: product.exchange
+          contentType: application/json
+          group: orderProducts
+        productAddedEventsSubscriberChannel:
+          binder: rabbit
+          destination: productAdded.exchange
+          contentType: application/json
+          group: orderProducts
+      rabbit:
+        bindings:
+          productEventsSubscriberChannel:
+            consumer:
+              autoBindDlq: true
+              requeueRejected: false
+              dlqTtl: 300000
+              delayedExchange: true
+          productAddedEventsSubscriberChannel:
+            consumer:
+              autoBindDlq: true
+              requeueRejected: false
+              dlqTtl: 300000
+              delayedExchange: true
+
+  datasource:
+    url: jdbc:h2:~/file/Mukibul;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    platform: h2
+    continue-on-error: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+  rabbitmq:
+    listener:
+      direct:
+        retry:
+          enabled: true
+          initial-interval: 2000ms
+          max-attempts: 2
+          multiplier: 1.5
+          max-interval: 5000ms
+
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+zuul:
+  sensitiveHeaders : ''
+ribbon:
+  ReadTimeout: 100000
+logging:
+  level:
+    root: INFO
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE

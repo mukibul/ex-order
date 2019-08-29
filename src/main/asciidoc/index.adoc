@@ -1,0 +1,173 @@
+= Order API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+
+[introduction]
+= Introduction
+
+Order service provides simple APIs to create a cart for a customer, add products to cart,
+and remove product from cart.
+
+[http-verbs]
+== HTTP Verbs
+
+Order service tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs.
+
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `POST`
+| Used to create a new resource
+
+| `PATCH`
+| Used to update an existing resource, including partial updates
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+Order service tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP status codes.
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+| `204 No Content`
+| An update to an existing resource has been applied successfully
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+| `404 Not Found`
+| The requested resource did not exist
+|===
+
+
+[[cart]]
+== Cart
+
+=== Get Cart
+
+Request URI :
+include::{snippets}/get-shopping-cart/curl-request.adoc[]
+
+Response fields :
+include::{snippets}/get-shopping-cart/response-fields.adoc[]
+
+Http Request :
+include::{snippets}/get-shopping-cart/http-request.adoc[]
+
+Sample Response :
+include::{snippets}/get-shopping-cart/http-response.adoc[]
+
+Httpie Request
+include::{snippets}/get-shopping-cart/httpie-request.adoc[]
+
+Request Body
+include::{snippets}/get-shopping-cart/request-body.adoc[]
+
+Response Body
+include::{snippets}/get-shopping-cart/response-body.adoc[]
+
+
+
+=== Increase product quantity in cart
+
+Request URI :
+include::{snippets}/add-product-quantity-in-shopping-cart/curl-request.adoc[]
+
+Response fields :
+include::{snippets}/add-product-quantity-in-shopping-cart/response-fields.adoc[]
+
+Http Request :
+include::{snippets}/add-product-quantity-in-shopping-cart/http-request.adoc[]
+
+Sample Response :
+include::{snippets}/add-product-quantity-in-shopping-cart/http-response.adoc[]
+
+Httpie Request
+include::{snippets}/add-product-quantity-in-shopping-cart/httpie-request.adoc[]
+
+Path parameters
+include::{snippets}/add-product-quantity-in-shopping-cart/path-parameters.adoc[]
+
+Request Body
+include::{snippets}/add-product-quantity-in-shopping-cart/request-body.adoc[]
+
+Response Body
+include::{snippets}/add-product-quantity-in-shopping-cart/response-body.adoc[]
+
+=== Reduce product quantity in cart
+
+Request URI :
+include::{snippets}/reduce-product-quantity-in-shopping-cart/curl-request.adoc[]
+
+Response fields :
+include::{snippets}/reduce-product-quantity-in-shopping-cart/response-fields.adoc[]
+
+Http Request :
+include::{snippets}/reduce-product-quantity-in-shopping-cart/http-request.adoc[]
+
+Sample Response :
+include::{snippets}/reduce-product-quantity-in-shopping-cart/http-response.adoc[]
+
+Httpie Request
+include::{snippets}/reduce-product-quantity-in-shopping-cart/httpie-request.adoc[]
+
+Path parameters
+include::{snippets}/reduce-product-quantity-in-shopping-cart/path-parameters.adoc[]
+
+Request Body
+include::{snippets}/reduce-product-quantity-in-shopping-cart/request-body.adoc[]
+
+Response Body
+include::{snippets}/reduce-product-quantity-in-shopping-cart/response-body.adoc[]
+
+
+=== Update product quantity in cart
+
+Request URI :
+include::{snippets}/update-product-quantity-in-shopping-cart/curl-request.adoc[]
+
+Response fields :
+include::{snippets}/update-product-quantity-in-shopping-cart/response-fields.adoc[]
+
+Http Request :
+include::{snippets}/update-product-quantity-in-shopping-cart/http-request.adoc[]
+
+Sample Response :
+include::{snippets}/update-product-quantity-in-shopping-cart/http-response.adoc[]
+
+Httpie Request
+include::{snippets}/update-product-quantity-in-shopping-cart/httpie-request.adoc[]
+
+Path parameters
+include::{snippets}/update-product-quantity-in-shopping-cart/path-parameters.adoc[]
+
+Request Body
+include::{snippets}/update-product-quantity-in-shopping-cart/request-body.adoc[]
+
+Response Body
+include::{snippets}/update-product-quantity-in-shopping-cart/response-body.adoc[]
+
+
+
+
+
